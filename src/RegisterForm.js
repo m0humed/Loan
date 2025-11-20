@@ -1,7 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./RegisterForm.css";
 import SalarySelector from "./SalarySelector";
 import Result from "./showOverlyTest"
+import InputComponent from "./InputComponent"
+
 
 export default function RegisterForm() {
   const [formInputs, setFormInputs] = useState({
@@ -12,20 +14,14 @@ export default function RegisterForm() {
     salary: 100,
   });
 
-  const [notClickable, setNotClickable] = useState(true);
+
   const [showOverlay, setShowOverlay] = useState(false);
   // Auto validation using useEffect
-  useEffect(() => {
-    if (
-      formInputs.name.trim() !== "" &&
-      formInputs.phoneNumber.trim() !== "" &&
-      formInputs.age.trim() !== ""
-    ) {
-      setNotClickable(false);
-    } else {
-      setNotClickable(true);
-    }
-  }, [formInputs]);
+  const btnIsDisabled = 
+      formInputs.name.trim() === "" ||
+      formInputs.phoneNumber.trim() === "" ||
+      formInputs.age.trim() === "";
+
 
   // Name validation (letters & spaces)
   function handleName(e) {
@@ -69,28 +65,31 @@ export default function RegisterForm() {
         }}
       >
         {/* Name */}
-        <div className="input-container">
+        {/* <div className="input-container">
           <div className="label">Name</div>
           <div className="input">
             <input value={formInputs.name} onChange={handleName} />
           </div>
-        </div>
+        </div> */}
+        <InputComponent inputTitle="Name"  value={formInputs.name} handleInput={handleName}/>
 
         {/* Phone */}
-        <div className="input-container">
+        {/* <div className="input-container">
           <div className="label">Phone Number</div>
           <div className="input">
             <input value={formInputs.phoneNumber} onChange={handlePhone} />
           </div>
-        </div>
+        </div> */}
+        <InputComponent inputTitle="Phone Number"  value={formInputs.phoneNumber} handleInput={handlePhone}/>
 
         {/* Age */}
-        <div className="input-container">
+        {/* <div className="input-container">
           <div className="label">Age</div>
           <div className="input">
             <input value={formInputs.age} onChange={handleAge} />
           </div>
-        </div>
+        </div> */}
+        <InputComponent inputTitle="Age"  value={formInputs.age} handleInput={handleAge}/>
 
         {/* Employed */}
         <div className="input-container">
@@ -122,7 +121,7 @@ export default function RegisterForm() {
 
         {/* Submit */}
         <div className="input-container">
-          <button type="submit" disabled={notClickable}>
+          <button type="submit" className={btnIsDisabled?"disabled":""} disabled={btnIsDisabled}>
             Submit
           </button>
         </div>
