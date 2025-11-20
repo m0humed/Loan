@@ -1,17 +1,15 @@
-import './RegisterForm.css'
 import { useContext } from 'react'
 import {FormData} from "./Contexts/FormContext"
 
-export default function InputComponent(){
+export default function InsidarInput(){
     const input = useContext(FormData)
+
     return(
-    <div className="input-container">
+        <>
           <div className="label">{input.title}</div>
           <div className="input">
             <input value={input.value} onChange={input.handler} />
           </div>
-    </div>
+        </>
     )
-
-
 }

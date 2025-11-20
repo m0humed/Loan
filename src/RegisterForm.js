@@ -3,7 +3,7 @@ import "./RegisterForm.css";
 import SalarySelector from "./SalarySelector";
 import Result from "./showOverlyTest"
 import InputComponent from "./InputComponent"
-
+import {FormData} from "./Contexts/FormContext"
 
 export default function RegisterForm() {
   const [formInputs, setFormInputs] = useState({
@@ -65,31 +65,19 @@ export default function RegisterForm() {
         }}
       >
         {/* Name */}
-        {/* <div className="input-container">
-          <div className="label">Name</div>
-          <div className="input">
-            <input value={formInputs.name} onChange={handleName} />
-          </div>
-        </div> */}
-        <InputComponent inputTitle="Name"  value={formInputs.name} handleInput={handleName}/>
+        <FormData.Provider title="Name" value={formInputs.name} handler={handleName}>
+                <InputComponent />
+        </FormData.Provider>
 
         {/* Phone */}
-        {/* <div className="input-container">
-          <div className="label">Phone Number</div>
-          <div className="input">
-            <input value={formInputs.phoneNumber} onChange={handlePhone} />
-          </div>
-        </div> */}
-        <InputComponent inputTitle="Phone Number"  value={formInputs.phoneNumber} handleInput={handlePhone}/>
+        <FormData.Provider title="Phone Number"  value={formInputs.phoneNumber} handler={handlePhone}>
+                <InputComponent />
+        </FormData.Provider>
 
         {/* Age */}
-        {/* <div className="input-container">
-          <div className="label">Age</div>
-          <div className="input">
-            <input value={formInputs.age} onChange={handleAge} />
-          </div>
-        </div> */}
-        <InputComponent inputTitle="Age"  value={formInputs.age} handleInput={handleAge}/>
+        <FormData.Provider title="Age" value={formInputs.age} handler={handleAge}>
+                <InputComponent />
+        </FormData.Provider>
 
         {/* Employed */}
         <div className="input-container">
